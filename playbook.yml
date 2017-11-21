@@ -1,0 +1,17 @@
+- hosts: all
+  sudo: true
+  tasks:
+    - name: update apt cache
+      apt: update_cache=yes
+    - name: install apache
+      apt: name=apache2 state=present
+    - name: install mysql
+      apt: name=mysql-server state=present
+    - name: install cmatrix
+      apt: name=cmatrix state=present
+    - name: Fancy way of doing authorized_keys
+      authorized_key: user=vagrant
+                      exclusive=no
+                      key="{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+
+     
