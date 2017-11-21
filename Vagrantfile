@@ -37,27 +37,32 @@ Vagrant.configure("2") do |config|
 
   config.vm.define "master" do |subconfig|
     subconfig.vm.box = "envimation/ubuntu-xenial"
-    subconfig.vm.network :public_network, ip: "192.168.0.20" 
+    subconfig.vm.network :public_network, ip: "192.168.0.20", bridge: "en0: Wi-Fi (AirPort)" 
  end
 
   config.vm.define "node1" do |subconfig|
     subconfig.vm.box = "envimation/ubuntu-xenial"
-    subconfig.vm.network :public_network, ip: "192.168.0.21"
+    subconfig.vm.network :public_network, ip: "192.168.0.21", bridge: "en0: Wi-Fi (AirPort)"
   end
 
   config.vm.define "node2" do |subconfig|
      subconfig.vm.box = "envimation/ubuntu-xenial"
-     subconfig.vm.network :public_network, ip: "192.168.0.22"
+     subconfig.vm.network :public_network, ip: "192.168.0.22", bridge: "en0: Wi-Fi (AirPort)"
   end
 
  config.ssh.insert_key = false
 
  config.vm.provision "ansible" do |ansible|
-  # ansible.verbose = "v"
-   ansible.playbook = "playbook.yml"
+   #ansible.verbose = "v"
+   ansible.playbook = "prepare.yml"
   end
 
 
+ 
+ config.vm.provision "ansible" do |ansible|
+   #ansible.verbose = "v"
+   ansible.playbook = "playbook.yml"
+  end
 
 
 
@@ -95,7 +100,8 @@ Vagrant.configure("2") do |config|
   # Create a public network, which generally matched to bridged network.
   # Bridged networks make the machine appear as another physical device on
   # your network.
-   config.vm.network "public_network"
+  
+  #config.vm.network "public_network"
 
   # Share an additional folder to the guest VM. The first argument is
   # the path on the host to the actual folder. The second argument is
