@@ -19,35 +19,22 @@ Vagrant.configure("2") do |config|
  #   ansible.playbook = "playbook.yml"
  # end
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   config.vm.define "master" do |subconfig|
     subconfig.vm.box = "envimation/ubuntu-xenial"
     subconfig.vm.network :public_network, ip: "192.168.0.20", bridge: "en0: Wi-Fi (AirPort)" 
+    # subconfig.vm.network :public_network,  bridge: "en0: Wi-Fi (AirPort)"
  end
 
   config.vm.define "node1" do |subconfig|
     subconfig.vm.box = "envimation/ubuntu-xenial"
     subconfig.vm.network :public_network, ip: "192.168.0.21", bridge: "en0: Wi-Fi (AirPort)"
+    #subconfig.vm.network :public_network,  bridge: "en0: Wi-Fi (AirPort)"
   end
 
   config.vm.define "node2" do |subconfig|
      subconfig.vm.box = "envimation/ubuntu-xenial"
      subconfig.vm.network :public_network, ip: "192.168.0.22", bridge: "en0: Wi-Fi (AirPort)"
+     #subconfig.vm.network :public_network,  bridge: "en0: Wi-Fi (AirPort)"
   end
 
  config.ssh.insert_key = false
@@ -66,7 +53,7 @@ Vagrant.configure("2") do |config|
 
 
 
-
+end
 
 
   # The most common configuration options are documented and commented below.
@@ -131,4 +118,4 @@ Vagrant.configure("2") do |config|
   #   apt-get update
   #   apt-get install -y apache2
   # SHELL
-end
+
